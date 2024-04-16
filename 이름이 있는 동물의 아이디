@@ -9,6 +9,16 @@ ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE는
 단, ID는 오름차순 정렬되어야 합니다.
 */
 
+/*
+WHERE 절에서
+'IS NULL' 이면 값이 없는 것만 출력
+'IS NOT NULL' 이면 값이 있는 것만 출력
+
+ORDER BY 절에서
+'값'만 입력하면 값을 기준으로 오름차순 정렬
+'값 DESC' 를 입력하면 값을 기준으로 내림차순 정렬
+/*
+
 SELECT ANIMAL_ID
 FROM ANIMAL_INS
 WHERE NAME IS NOT NULL
