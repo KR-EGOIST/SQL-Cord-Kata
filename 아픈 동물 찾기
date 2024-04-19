@@ -1,0 +1,17 @@
+/*
+동물 보호소에 들어온 동물 중 아픈 동물의 아이디와 이름을 조회하는 SQL 문을 작성해주세요.
+이때 결과는 아이디 순으로 조회해주세요.
+
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+정렬 : ORDER BY
+
+조건에 필드명 = '값' 을 입력하면 필드의 데이터가 '값'인 데이터만 조회 됩니다.
+
+*/
+
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE INTAKE_CONDITION = 'Sick'
+ORDER BY ANIMAL_ID
