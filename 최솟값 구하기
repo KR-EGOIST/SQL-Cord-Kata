@@ -1,0 +1,18 @@
+/*
+동물 보호소에 가장 먼저 들어온 동물은 언제 들어왔는지 조회하는 SQL 문을 작성해주세요.
+
+조회 : SELECT
+별칭 : AS
+테이블 지정 : FROM
+정렬 : ORDER BY
+지정한 갯수 만큼만 조회 : LIMIT
+
+필드명을 한글로 별칭을 지을 때 주의할 점
+AS '별칭'
+작은 따옴표로 감싸줘야 합니다!
+*/
+
+SELECT DATETIME AS '시간'
+FROM ANIMAL_INS
+ORDER BY DATETIME
+LIMIT 1
