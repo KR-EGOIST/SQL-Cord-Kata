@@ -1,0 +1,23 @@
+/*
+동물 보호소에 가장 먼저 들어온 동물의 이름을 조회하는 SQL 문을 작성해주세요.
+
+조회 : SELECT
+테이블 선택 : FROM
+정렬 : ORDER BY (DESC 를 입력하면 내림차순)
+상위 몇 개만 출력 : LIMIT
+
+LIMIT 값
+지정한 갯수만큼의 자료만 보여줍니다.
+
+ex) 상위 5개만 볼려면
+SELECT NAME
+FROM ANIMAL_INS
+ORDER BY DATETIME
+LIMIT 5
+
+*/
+
+SELECT NAME
+FROM ANIMAL_INS
+ORDER BY DATETIME
+LIMIT 1
