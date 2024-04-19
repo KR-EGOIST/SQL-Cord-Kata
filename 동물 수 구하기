@@ -1,0 +1,7 @@
+/*
+ COUNT(인수) : 인수의 갯수를 세는 함수
+ AS 별칭 : 필드명을 별칭 지정하는 함
+*/
+
+SELECT COUNT(ANIMAL_ID) AS COUNT
+FROM ANIMAL_INS
