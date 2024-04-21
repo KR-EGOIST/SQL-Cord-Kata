@@ -1,0 +1,16 @@
+/*
+특정 부분이 일치하는 데이터를 찾고싶을때는 LIKE를 이용하게 됩니다.
+이때 _ 혹은 %를 이용하게 됩니다.
+_는 여기에 무슨 값이 들어가지는지는 모르겠지만 _ 개수만큼 데이터가 있다는 뜻입니다.
+__EL__ 라고 하면 EL앞에 2글자 뒤에 2글자가 있어야 합니다.
+
+%는 글자수와 상관없이 찾게됩니다.
+%EL 이라고 하면 끝자리가 EL인 데이터를 찾게됩니다.
+EL%라고 하면 처음이 EL인 데이터를 찾게됩니다.
+%EL%라고 하게된다면 어딘가에 EL이 들어만 있으면 됩니다.
+*/
+
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE ANIMAL_TYPE = 'Dog' AND (NAME LIKE '%EL%' OR NAME LIKE '%el%')
+ORDER BY NAME
