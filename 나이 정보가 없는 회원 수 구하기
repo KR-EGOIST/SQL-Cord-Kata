@@ -1,0 +1,8 @@
+/*
+갯수를 세려면 COUNT(컬럼명) 을 해준다.
+NULL 값을 찾으려면 컬럼명 IS NULL 을 해주면 된다.
+*/
+
+SELECT COUNT(USER_ID) AS USERS
+FROM USER_INFO
+WHERE AGE IS NULL
