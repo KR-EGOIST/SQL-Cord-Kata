@@ -1,0 +1,8 @@
+/*
+ORDER BY에 나열한 칼럼 순서대로 정렬을 수행할 수 있다.
+NAME으로 정렬 후, DESC으로 DATETIME에 대해 내림차순 정렬을 해준다.
+*/
+
+SELECT ANIMAL_ID, NAME, DATETIME
+FROM ANIMAL_INS
+ORDER BY NAME ASC, DATETIME DESC;
