@@ -1,0 +1,27 @@
+/*
+조건을 하나만 명시할 경우는 !=을 사용한다.
+
+조건을 여러 개 명시할 경우 OR를 사용하는데 OR의 비교가 선형적이라 조건이 많아질수록 효율이 떨어진다.
+
+따라서 조건이 많을 때는 IN을 사용한다.
+IN에 명시한 값들을 정렬하고 이진 탐색으로 값을 찾기 때문에 훨씬 효율이 좋다.
+그뿐만 아니라 가독성 측면에서도 IN을 사용하는 게 낫고 IN 내부에 서브 쿼리를 작성할 수 있는 장점도 있다.
+*/
+
+// != 풀이
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE INTAKE_CONDITION != 'Aged'
+ORDER BY ANIMAL_ID
+
+// NOT IN 풀이
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE INTAKE_CONDITION NOT IN ('Aged')
+ORDER BY ANIMAL_ID ASC
+
+// NOT 풀이
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE NOT INTAKE_CONDITION = 'Aged'
+ORDER BY ANIMAL_ID ASC
