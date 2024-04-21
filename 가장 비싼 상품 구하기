@@ -1,0 +1,10 @@
+/*
+최대값
+SELECT MAX(컬럼) FROM 테이블;
+
+최소값
+SELECT MIN(컬럼) FROM 테이블;
+*/
+
+SELECT MAX(PRICE) AS MAX_PRICE
+FROM PRODUCT
