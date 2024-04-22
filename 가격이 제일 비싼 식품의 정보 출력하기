@@ -1,0 +1,17 @@
+/*
+방법 1. ORDER BY 와 LIMIT 사용하기
+ORDER BY DESC (내림차순 정렬) 후 가장 첫 번째 행을 출력
+
+방법 2. MAX 함수와 서브쿼리 사용
+WHERE 절에 가격의 최대값을 서브쿼리로 작성해주면 된다.
+*/
+
+SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE
+FROM FOOD_PRODUCT
+ORDER BY PRICE DESC
+LIMIT 1
+
+SELECT *
+FROM FOOD_PRODUCT
+WHERE PRICE = (SELECT MAX(PRICE)
+               FROM FOOD_PRODUCT)
