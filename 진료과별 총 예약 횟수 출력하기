@@ -1,0 +1,33 @@
+/*
+조회 : SELECT
+별칭 : AS
+갯수 조회 : COUNT
+테이블 선택 : FROM
+조건 : WHERE
+년도 : YEAR
+월 : MONTH
+그룹 : GROUP BY
+정렬 : ORDER BY
+*/
+
+SELECT MCDP_CD AS '진료과코드', COUNT(APNT_YMD) AS '5월예약건수'
+FROM APPOINTMENT
+WHERE YEAR(APNT_YMD) = 2022 AND MONTH(APNT_YMD) = 5
+GROUP BY MCDP_CD
+ORDER BY COUNT(*), MCDP_CD
+
+//===============================================================
+
+SELECT MCDP_CD AS'진료과코드' , COUNT(APNT_YMD) AS '5월예약건수'
+FROM APPOINTMENT 
+WHERE APNT_YMD LIKE '2022-05-%'
+GROUP BY MCDP_CD
+ORDER BY COUNT(APNT_YMD), MCDP_CD
+
+//===============================================================
+
+SELECT  MCDP_CD AS '진료과코드', COUNT(*) AS '5월예약건수'
+FROM  APPOINTMENT
+WHERE  APNT_YMD >= '2022-05-01' AND APNT_YMD < '2022-06-01'
+GROUP BY MCDP_CD
+ORDER BY COUNT(*) ASC, MCDP_CD ASC
