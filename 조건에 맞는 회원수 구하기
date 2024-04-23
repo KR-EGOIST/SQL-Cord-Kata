@@ -1,0 +1,12 @@
+/*
+조회 : SELECT
+갯수 세기 : COUNT(필드명)
+별칭 : AS 별명
+테이블 선택 : FROM
+조건 : WHERE
+AND 논리연산자 : 전부 참 일 경우
+*/
+
+SELECT COUNT(USER_ID) AS USERS
+FROM USER_INFO
+WHERE YEAR(JOINED) = '2021' AND AGE >= 20 AND AGE <= 29
