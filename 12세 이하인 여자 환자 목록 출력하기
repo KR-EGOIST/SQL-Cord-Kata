@@ -1,0 +1,15 @@
+/*
+조회 : SELECT
+NULL 일 경우 : IFNULL(컬럼명, '값')
+별칭 : AS
+테이블 선택 : FROM
+조건 : WHERE
+AND : 둘 다 참일 경우
+정렬 : ORDER BY
+내림차순 : DESC
+*/
+
+SELECT PT_NAME, PT_NO, GEND_CD, AGE, IFNULL(TLNO, 'NONE') AS TLNO
+FROM PATIENT
+WHERE AGE <= 12 AND GEND_CD = 'W'
+ORDER BY AGE DESC, PT_NAME
