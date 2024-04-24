@@ -1,0 +1,22 @@
+/*
+DATE_FORMAT 정리 블로그 글
+
+https://blog.naver.com/jhso5041/223426044663
+
+조회 : SELECT
+날짜 표시 변경 : DATE_FORMAT
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+조건 : WHERE
+연산자 : 컬럼명 = A (컬럼명의 값이 A 인 경우)
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT B.BOOK_ID, A.AUTHOR_NAME, DATE_FORMAT(B.PUBLISHED_DATE, '%Y-%m-%d') AS PUBLISHED_DATE
+FROM BOOK B
+     JOIN AUTHOR A
+     ON B.AUTHOR_ID = A.AUTHOR_ID
+WHERE B.CATEGORY = '경제'
+ORDER BY B.PUBLISHED_DATE
