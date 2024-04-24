@@ -1,0 +1,26 @@
+/*
+CASE 문의 형식
+
+CASE 컬럼
+    WHEN 조건1 THEN 값1
+    WHEN 조건2 THEN 값2
+    ELSE 값3
+END 별칭
+
+조회 : SELECT
+날짜 형식 변경 : DATE_FORMAT
+0000-00-00 : '%Y-%m-%d'
+CASE 조건 : CASE WHEN THEN (WHEN THEN...) ELSE END
+테이블 선택 : FROM
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT ORDER_ID, PRODUCT_ID, DATE_FORMAT(OUT_DATE, '%Y-%m-%d') AS OUT_DATE,
+    CASE
+        WHEN OUT_DATE <= '2022-05-01' THEN '출고완료'
+        WHEN OUT_DATE > '2022-05-01' THEN '출고대기'
+        ELSE '출고미정'
+    END '출고여부'
+FROM FOOD_ORDER
+ORDER BY ORDER_ID
