@@ -1,0 +1,17 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+정렬 : ORDER BY
+연산자 : A - B (A 와 B 의 뺀 값)
+오름차순 : (ASC)
+특정 갯수만 조회 : LIMIT N (N개 만 출력)
+*/
+
+SELECT AI.ANIMAL_ID, AO.NAME
+FROM ANIMAL_INS AI
+     JOIN ANIMAL_OUTS AO
+     ON AI.ANIMAL_ID = AO.ANIMAL_ID
+ORDER BY AI.DATETIME - AO.DATETIME
+LIMIT 2
