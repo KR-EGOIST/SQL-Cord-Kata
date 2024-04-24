@@ -1,0 +1,20 @@
+/*
+조회 : SELECT
+합계 : SUM
+곱하기 : *
+별칭 : AS
+테이블 선택 : FROM
+내부 조인 : INNER JOIN
+조인 조건 : ON
+그룹 : GROUP BY
+정렬 : ORDER BY (여러 기준으로 정렬할 때는 쉼표(,) 로 이어서 작성)
+내림차순 : DESC
+오름차순 : ASC
+*/
+
+SELECT P.PRODUCT_CODE, SUM(O.SALES_AMOUNT) * P.PRICE AS SALES
+FROM PRODUCT P
+     INNER JOIN OFFLINE_SALE O
+     ON P.PRODUCT_ID = O.PRODUCT_ID
+GROUP BY P.PRODUCT_ID
+ORDER BY SALES DESC, P.PRODUCT_CODE
