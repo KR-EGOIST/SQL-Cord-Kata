@@ -1,0 +1,18 @@
+/*
+SQL IN 연산자 (Operator)
+WHERE 절 내에서 특정값 여러개를 선택하는 SQL 연산자
+괄호 내의 값 중 일치하는 것이 있으면 TRUE
+OR 연산자로도 같은 의미를 표현할 수 있는데, 길어진다.
+
+SELECT * FROM 테이블명
+WHERE 컬럼명 IN (값1, 값2, ...)
+
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+일치 확인 : WHERE 컬럼명 IN (값1, 값2, ...)
+*/
+
+SELECT ANIMAL_ID, NAME, SEX_UPON_INTAKE
+FROM ANIMAL_INS
+WHERE NAME IN ('Lucy', 'Ella', 'Pickle', 'Rogan', 'Sabrina', 'Mitty')
