@@ -1,0 +1,17 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+조건 : WHERE
+연산자 : A > B (A가 B 보다 크면)
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT AI.ANIMAL_ID, AO.NAME
+FROM ANIMAL_INS AI
+     JOIN ANIMAL_OUTS AO
+     ON AI.ANIMAL_ID = AO.ANIMAL_ID
+WHERE AI.DATETIME > AO.DATETIME
+ORDER BY AI.DATETIME
