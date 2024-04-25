@@ -1,0 +1,27 @@
+/*
+예시로 SUM , AVG 등 계산한 컬럼의 몇 이상인 항목만 가져오고 싶을 때
+컬럼을 묶었을 경우에는 WHERE 절에 조건을 넣어주면 안된다.
+
+GROUP BY 밑에 HAVING을 추가하고 여기에 조건을 넣어주면 간단하게 해결이 된다.
+
+조회 : SELECT
+합계 : SUM
+별칭 : AS
+테이블 선택 : FROm
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+조건 : WHERE
+그룹 : GROUP BY
+그룹 조건 : HAVING
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT UGU.USER_ID, UGU.NICKNAME, SUM(UGB.PRICE) AS TOTAL_SALES
+FROM USED_GOODS_BOARD UGB
+     JOIN USED_GOODS_USER UGU
+     ON UGB.WRITER_ID = UGU.USER_ID
+WHERE UGB.STATUS = 'DONE'
+GROUP BY UGU.USER_ID
+HAVING TOTAL_SALES >= 700000
+ORDER BY TOTAL_SALES
