@@ -1,0 +1,21 @@
+/*
+조회 : SELECT
+날짜 변환 : DATE_FORMAT
+0000-00-00 : '%Y-%m-%d'
+별칭 : AS
+테이블 선택 : FROM
+조건 : WHERE
+월만 조회 : MONTH
+NULL 제외 : IS NOT NULL
+AND : 모두 참일 경우
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT MEMBER_ID, MEMBER_NAME, GENDER
+       , DATE_FORMAT(DATE_OF_BIRTH, '%Y-%m-%d') AS DATE_OF_BIRTH
+FROM MEMBER_PROFILE
+WHERE GENDER = 'W'
+      AND MONTH(DATE_OF_BIRTH) = '03'
+      AND TLNO IS NOT NULL
+ORDER BY MEMBER_ID
