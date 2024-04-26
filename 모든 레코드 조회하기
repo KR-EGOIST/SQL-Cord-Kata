@@ -1,0 +1,11 @@
+/*
+조회 : SELECT
+모두 조회 : *
+테이블 선택 : FROM
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT *
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID
