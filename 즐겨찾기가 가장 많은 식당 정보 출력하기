@@ -30,6 +30,16 @@ GROUP BY
 서브쿼리로 최대 값을 따로 찾아준다 ! 
 */
 
+/*
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+조건의 서브쿼리 : IN (...)
+그룹 : GROUP BY
+정렬 : ORDER BY
+내림차순 : DESC
+*/
+
 SELECT FOOD_TYPE, REST_ID, REST_NAME, FAVORITES
 FROM REST_INFO
 WHERE (FOOD_TYPE, FAVORITES) IN (SELECT FOOD_TYPE, MAX(FAVORITES)
