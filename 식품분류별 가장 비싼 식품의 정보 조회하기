@@ -1,0 +1,38 @@
+/*
+조회 : SELECT
+별칭 : AS
+테이블 선택 : FROM
+조건 : WHERE
+조건의 서브쿼리 : IN(...)
+그룹 : GROUP BY
+그룹 조건 : HAVING
+조건의 범위지정 : IN(...)
+정렬 : ORDER BY
+내림차순 : DESC
+*/
+
+/*
+IN조건
+
+여러 값을 OR 관계로 묶어 나열하는 조건을 WHERE 절에 사용할 때 쓸 수 있는 키워드이다.
+IN 연산자는 조건의 범위를 지정하는 데 사용된다.
+값은 콤마( , )로 구분하여 괄호 내에 묶으며, 이 값 중에서 하나 이상과 일치하면 조건에 맞는 것으로 평가된다.
+*/
+
+SELECT CATEGORY, PRICE AS MAX_PRICE, PRODUCT_NAME
+FROM FOOD_PRODUCT
+WHERE PRICE IN (SELECT MAX(PRICE)
+               FROM FOOD_PRODUCT
+               GROUP BY CATEGORY
+               HAVING CATEGORY IN ('국', '김치', '식용유', '과자'))
+ORDER BY MAX_PRICE DESC
+
+//============================================================================
+
+SELECT CATEGORY, PRICE AS MAX_PRICE, PRODUCT_NAME
+FROM FOOD_PRODUCT
+WHERE PRICE IN (SELECT MAX(PRICE)
+               FROM FOOD_PRODUCT
+               GROUP BY CATEGORY)
+      AND CATEGORY IN ('국', '김치', '식용유', '과자')
+ORDER BY MAX_PRICE DESC
