@@ -11,6 +11,16 @@ HAVING 절
  
 ORDER BY 절
 USER_ID를 기준으로 오름차순 정렬하고 USER_ID가 같다면 PRODUCT_ID를 기준으로 내림차순 정렬한다.
+
+조회 : SELECT
+테이블 선택 : FROM
+그룹 : GROUP BY
+그룹 조건 : HAVING
+갯수 조회 : COUNT
+A > B : A 가 B 보다 클 경우
+정렬 : ORDER BY
+오름차순 : (ASC)
+내림차순 : DESC
 */
 
 SELECT USER_ID, PRODUCT_ID
