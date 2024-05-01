@@ -1,0 +1,9 @@
+/*
+조회 : SELECT
+최댓값 : MAX(컬럼명)
+별칭 : AS 별칭
+테이블 선택 : FROM 테이블명
+*/
+
+SELECT MAX(DATETIME) AS '시간'
+FROM ANIMAL_INS
