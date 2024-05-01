@@ -1,0 +1,67 @@
+/*
+CONCAT 함수는 둘 이상의 문자열을 입력한 순서대로 합쳐서 반환해주는 함수입니다.
+CONCAT(문자열1, 문자열2 [, 문자열3 ...])
+
+문자열 자르기 함수
+SUBSTRING 과 SUBSTR 은 같습니다.
+
+SUBSTRING, SUBSTR(문자열 STR, 시작지점 START, 길이 LENGTH)
+- 문자열(STR)을 시작지점부터 길이만큼 추출 / [길이 미입력시 끝까지 추출]
+
+MySQL에서 문자열에 일부분을 가져오는 함수는 대표적으로 3가지가 존재합니다.
+
+    LEFT : 문자에 왼쪽을 기준으로 일정 갯수를 가져오는 함수.
+    MID : 문자에 지정한 시작 위치를 기준으로 일정 갯수를 가져오는 함수.
+    RIGHT : 문자에 오른쪽을 기준으로 일정 갯수를 가져오는 함수.
+
+
+    * 참고로 MID 함수는 
+        SUBSTR과 SUBSTRING 함수의 동의어입니다.
+
+LEFT
+LEFT(문자, 가져올 갯수);
+
+MID
+MID(문자, 시작 위치, 가져올 갯수);
+-- 또는 SUBSTR(문자, 시작 위치, 가져올 갯수);
+-- 또는 SUBSTRING(문자, 시작 위치, 가져올 갯수);
+
+RIGHT
+RIGHT(문자, 가져올 갯수);
+*/
+
+SELECT B.USER_ID, B.NICKNAME,
+       CONCAT(B.CITY, ' ', B.STREET_ADDRESS1, ' ', B.STREET_ADDRESS2) AS 전체주소, 
+       CONCAT(SUBSTRING(B.TLNO, 1, 3), '-', SUBSTRING(B.TLNO, 4, 4), '-', SUBSTRING(B.TLNO, 8, 4)) AS '전화번호'
+FROM USED_GOODS_BOARD A
+     JOIN USED_GOODS_USER B
+     ON A.WRITER_ID = B.USER_ID
+GROUP BY B.USER_ID
+HAVING COUNT(A.WRITER_ID) >= 3
+ORDER BY B.USER_ID DESC
+
+//============================================================
+
+SELECT B.user_id,B.nickname
+,concat(B.city,' ',B.street_address1,' ',B.street_address2) AS 전체주소
+,concat(LEFT(tlno,3), '-', MID(tlno,4,4),'-', RIGHT(tlno,4)) AS 전화번호
+FROM used_goods_board A join used_goods_user B ON A.writer_id = B.user_id
+GROUP BY writer_id
+HAVING count(writer_id) >= 3
+ORDER BY B.user_id DESC
+
+//=============================================================
+
+SELECT DISTINCT
+U.USER_ID, 
+U.NICKNAME, 
+CONCAT_WS(" ", U.CITY,U.STREET_ADDRESS1,U.STREET_ADDRESS2) AS 전체주소, 
+CONCAT_WS("-", SUBSTRING(TLNO, 1, 3), SUBSTRING(TLNO, 4, 4), SUBSTRING(TLNO, 8, 4)) AS 전화번호
+FROM USED_GOODS_BOARD AS B
+JOIN USED_GOODS_USER AS U 
+ON B.WRITER_ID = U.USER_ID
+WHERE U.USER_ID IN (SELECT WRITER_ID 
+        FROM USED_GOODS_BOARD
+        GROUP BY WRITER_ID
+        HAVING COUNT(*) >= 3)
+ORDER BY U.USER_ID DESC;
