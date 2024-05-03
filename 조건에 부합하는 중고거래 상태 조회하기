@@ -1,0 +1,37 @@
+/*
+조회 : SELECT
+case 문 : CASE WHEN 조건 THEN 값 END AS 별칭
+별칭 : AS 별칭
+테이블 선택 : FROM
+조건 : WHERE
+부분일치 : LIKE
+A 로 시작하는 : 'A%'
+정렬 : ORDER BY
+내림차순 : DESC
+
+조건에 따라서 값을 지정해 주는 CASE문에 대해서 알아보겠습니다.
+CASE 문의 형식은
+
+  CASE
+    WHEN 조건1 THEN 값1
+    WHEN 조건2 THEN 값2
+    ELSE 값3
+  END
+
+입니다.
+컬럼이 조건1 일때는 값1 을 조건2일때는 값2를 반환하고 조건에 맞지 않는 경우에는 값3 을 반환하는것입니다. 
+
+CASE 문을 사용하는 경우는
+첫 번째는 약어나 코드를 읽기 쉬운 값으로 바꿔 줄 때 사용합니다.
+두 번째는 데이터를 범주화 하는것입니다.  
+*/
+
+SELECT BOARD_ID, WRITER_ID, TITLE, PRICE,
+       CASE
+            WHEN STATUS = 'SALE' THEN '판매중'
+            WHEN STATUS = 'RESERVED' THEN '예약중'
+            WHEN STATUS = 'DONE' THEN '거래완료'
+       END AS STATUS
+FROM USED_GOODS_BOARD
+WHERE CREATED_DATE LIKE '2022-10-05%'
+ORDER BY BOARD_ID DESC
