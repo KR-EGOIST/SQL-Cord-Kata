@@ -1,0 +1,23 @@
+/*
+테이블을 JOIN 키워드를 여러번 사용해 테이블을 여러개 합칠 수 있다.
+*/
+
+/*
+조회 : SELECT
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+조건 : WHERE
+AND : 모두 참일 경우
+부분일치 : LIKE
+NULL 값 조회 : IS NULL
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT AP.APNT_NO, P.PT_NAME, AP.PT_NO, AP.MCDP_CD, D.DR_NAME, AP.APNT_YMD
+FROM APPOINTMENT AP
+JOIN PATIENT P ON AP.PT_NO = P.PT_NO
+JOIN DOCTOR D ON AP.MDDR_ID = D.DR_ID
+WHERE AP.APNT_YMD LIKE '2022-04-13%' AND AP.MCDP_CD = 'CS' AND AP.APNT_CNCL_YMD IS NULL
+ORDER BY AP.APNT_YMD
