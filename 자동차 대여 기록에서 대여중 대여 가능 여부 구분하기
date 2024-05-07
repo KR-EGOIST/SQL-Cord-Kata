@@ -1,0 +1,21 @@
+/*
+여러 날짜들 중 가장 최근 값으로 가져와 확인해야하기 때문에 MAX()를 사용
+
+조회 : SELECT
+최대값 : MAX
+CASE 문 : CASE WHEN 조건 THEN 값 ELSE 값 END AS 별칭
+BETWEEN A AND B : A 와 B 사이의 값
+테이블 선택 : FROM
+그룹 : GROUP BY
+정렬 : ORDER BY
+내림차순 : DESC
+*/
+
+SELECT CAR_ID,
+       MAX(CASE
+       WHEN '2022-10-16' BETWEEN START_DATE AND END_DATE THEN '대여중'
+       ELSE '대여 가능'
+       END) AS AVAILABILITY
+FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+GROUP BY CAR_ID
+ORDER BY CAR_ID DESC
