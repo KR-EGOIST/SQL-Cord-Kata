@@ -1,0 +1,35 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+그룹 : GROUP BY
+정렬 : ORDER BY
+합계 : SUM(컬럼명)
+내림차순 : DESC
+특정 갯수만 출력 : LIMIT 숫
+*/
+
+SELECT A.FLAVOR
+FROM FIRST_HALF A
+     JOIN JULY B
+     ON A.FLAVOR = B.FLAVOR
+GROUP BY A.FLAVOR
+ORDER BY A.TOTAL_ORDER + SUM(B.TOTAL_ORDER) DESC
+LIMIT 3
+
+//========================================
+
+/*
+UNION ALL : 테이블 병합, 중복 데이터까지 출력한다
+*/
+
+SELECT A.FLAVOR
+FROM (
+    SELECT * FROM FIRST_HALF
+    UNION ALL
+    SELECT * FROM JULY
+    ) AS A
+GROUP BY A.FLAVOR
+ORDER BY SUM(A.TOTAL_ORDER) DESC
+LIMIT 3
