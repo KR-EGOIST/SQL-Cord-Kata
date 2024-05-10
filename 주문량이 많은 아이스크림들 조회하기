@@ -7,7 +7,7 @@
 정렬 : ORDER BY
 합계 : SUM(컬럼명)
 내림차순 : DESC
-특정 갯수만 출력 : LIMIT 숫
+특정 갯수만 출력 : LIMIT 숫자
 */
 
 SELECT A.FLAVOR
