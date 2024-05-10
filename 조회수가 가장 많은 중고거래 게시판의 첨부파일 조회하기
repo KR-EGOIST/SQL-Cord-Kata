@@ -1,0 +1,37 @@
+/*
+조회 : SELECT
+문자열 연결 : CONCAT(문자열1, 문자열2 ...)
+별칭 : AS
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+조건 : WHERE
+서브쿼리 : ()
+최댓값 : MAX(컬럼명)
+정렬 : ORDER BY
+내림차순 : DESC
+*/
+
+SELECT CONCAT('/home/grep/src/', B.BOARD_ID, '/', B.FILE_ID, B.FILE_NAME, B.FILE_EXT) AS FILE_PATH
+FROM USED_GOODS_BOARD A
+     JOIN USED_GOODS_FILE B
+     ON A.BOARD_ID = B.BOARD_ID
+WHERE A.VIEWS = (SELECT MAX(VIEWS)
+                 FROM USED_GOODS_BOARD)
+ORDER BY B.FILE_ID DESC
+
+//================================================================
+
+/*
+특정 갯수만 출력 : LIMIT(숫자)
+*/
+
+SELECT CONCAT('/home/grep/src/', F.BOARD_ID, "/",F.FILE_ID,F.FILE_NAME, F.FILE_EXT) AS FILE_PATH
+FROM USED_GOODS_BOARD B
+JOIN USED_GOODS_FILE F
+ON B.BOARD_ID = F.BOARD_ID
+WHERE VIEWS = (SELECT VIEWS
+                FROM USED_GOODS_BOARD
+                ORDER BY VIEWS DESC 
+                LIMIT 1)       
+ORDER BY F.FILE_ID DESC
