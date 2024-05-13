@@ -1,0 +1,30 @@
+/*
+테이블이 3개가 주어졌을땐, JOIN할 수 있는 컬럼이 있다면 차례대로 수행해주면 된다.
+
+GROUP BY 에는 여러개의 컬럼이 들어올 수 있다.
+
+GROUP BY 로 묶으면 매출액 등 계산을 할 때 SUM 을 해줘서 각 그룹별 총합계를 구해준다.
+
+조회 : SELECT
+합계 : SUM
+별칭 : AS
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+조건 : WHERE
+부분일치 : LIKE
+그룹 : GROUP BY
+정렬 : ORDER BY
+오름차순 : (ASC)
+내림차순 : DESC
+*/
+
+SELECT A.AUTHOR_ID, B.AUTHOR_NAME, A.CATEGORY, SUM(C.SALES * A.PRICE) AS TOTAL_SALES
+FROM BOOK A
+     JOIN AUTHOR B
+     ON A.AUTHOR_ID = B.AUTHOR_ID
+     JOIN BOOK_SALES C
+     ON A.BOOK_ID = C.BOOK_ID
+WHERE SALES_DATE LIKE '2022-01%'
+GROUP BY A.AUTHOR_ID, A.CATEGORY
+ORDER BY A.AUTHOR_ID, A.CATEGORY DESC
