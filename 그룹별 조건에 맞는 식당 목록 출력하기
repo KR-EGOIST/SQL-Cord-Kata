@@ -1,0 +1,33 @@
+/*
+조회 : SELECT
+날짜 표기법 : DATE_FORMAT
+0000-00-00 : '%Y-%m-%d'
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+조건 : WHERE
+서브쿼리 : (...)
+그룹 : GROUP BY
+정렬 : ORDER BY
+갯수 : COUNT(컬럼명)
+내림차순 : DESC
+특정 갯수만 조회 : LIMIT 숫자
+오름차순 : (ASC)
+
+풀이
+1) MEMBER_ID를 통해 두 테이블을 조인한다.
+2) 가장 많은 리뷰를 작성한 회원을 찾아야 하므로 where 조건절에서 group by로 묶고, limit 1을 주어 가장 위에 있는 값을 가져온다.
+3) 결과는 리뷰 작성일을 기준으로 오름차순, 리뷰 작성일이 같다면 리뷰 텍스트를 기준으로 오름차순 정렬한다.
+4) 데이트 포맷이 예제 결과 데이터와 같아야 하므로 "% Y-%m-%d"으로 포맷시킨다.
+*/
+
+SELECT A.MEMBER_NAME, B.REVIEW_TEXT, DATE_FORMAT(B.REVIEW_DATE, '%Y-%m-%d')
+FROM MEMBER_PROFILE A
+     JOIN REST_REVIEW B
+     ON A.MEMBER_ID = B.MEMBER_ID
+WHERE A.MEMBER_ID = (SELECT MEMBER_ID
+                     FROM REST_REVIEW
+                     GROUP BY MEMBER_ID
+                     ORDER BY COUNT(*) DESC
+                     LIMIT 1)
+ORDER BY B.REVIEW_DATE, B.REVIEW_TEXT
