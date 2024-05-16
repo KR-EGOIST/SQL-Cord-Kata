@@ -1,0 +1,87 @@
+/*
+조회 : SELECT
+날짜 표기법 : DATE_FORMAT
+0000-00-00 : '%Y-%m-%d'
+별칭 : AS
+조건 : WHERE
+부분 일치 : LIKE
+합집합(중복 제외) : UNION
+NULL 로 표시 : NULL
+정렬 : ORDER BY
+오름차순 : (ASC)
+
+UNION : 중복 제외하고 합쳐서 조회
+-- UNION
+select ~~~ from ~~~ --첫번째 select문
+UNION 
+select ~~~ from ~~~ --두번째 selec문
+
+UNION ALL : 중복도 포함하고 합쳐서 조회
+-- UNION ALL
+select ~~~ from ~~~ --첫번째 select문
+UNION ALL
+select ~~~ from ~~~ --두번째 selec문
+
+INTERSECT : 중복된 값만 조회
+-- INTERSECT
+-- A드라마에도 출연했으면서, B드라마에 출연한 사람의 이름과, 성, 연령, 키 를 출력하시오.
+select first_name, last_name, age, height from actor
+where actor.name = 'A'
+INTERSECT
+select first_name, last_name, age, height from actor
+where actor.name = 'B'
+
+MySQL 에서는 INTERSECT가 존재하지 않아서 이를 JOIN으로 해결할 수 있습니다.
+SELECT t1.col1, t1.col2
+FROM table1 t1 INNER JOIN table2 t2 
+	ON t1.col1 = t2.col1 AND t1.col2 = t2.col2
+
+EXCEPT : 차집합
+-- EXCEPT
+-- A드라마에 등장한 배우이며, B에는 등장하지 않은 배우의 이름과, 성, 연령, 키 를 출력하시오.
+select DISTINCT(first_name), DISTINCT(last_name), age, height from actor
+where actor.name = 'A'
+EXCEPT
+select DISTINCT(first_name), DISTINCT(last_name), age, height from actor
+where actor.name = 'B'
+
+이부분에서 주의할점이 있습니다!! 바로 DISTINCT입니다. EXCEPT(MINUS)절에서는 출력할때 DISTINCT를 반드시 넣어주셔야 합니다.
+MySQL 에서는 EXCEPT도 마찬가지로 존재하지 않습니다. 따라서 이또한 JOIN으로 해결할 수 있습니다.
+SELECT member_id as uid, member_name as uname FROM member
+EXCEPT
+SELECT emp_id as uid, emp_name as uname FROM emp;
+
+NOT IN 을 이용하는 방법
+SELECT DISTINCT m.member_id as uid, m.member_name as uname
+FROM member m
+WHERE (m.member_id, m.member_name) NOT IN
+  (SELECT e.emp_id, e.emp_name FROM emp e);
+
+NOT EXISTS 을 이용하는 방법
+SELECT DISTINCT m.member_id as uid, m.member_name as uname
+FROM member m
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM emp e
+  WHERE e.emp_id=m.member_id
+    AND e.emp_name=m.member_name
+);
+
+LEFT (OUTER) JOIN 을 이용하는 방법
+SELECT DISTINCT m.member_id as uid, m.member_name as uname
+FROM member m
+  LEFT JOIN emp e ON e.emp_id=m.member_id
+    AND e.emp_name=m.member_name
+WHERE e.emp_id IS NULL;	
+
+성능으로 봤을때 LEFT JOIN -> NOT EXISTS -> NOT IN 이므로 가능하면 성능이 좋은것으로 쓰면 좋다
+*/
+
+SELECT DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, USER_ID, SALES_AMOUNT
+FROM ONLINE_SALE
+WHERE SALES_DATE LIKE '2022-03%'
+UNION
+SELECT DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, NULL AS USER_ID, SALES_AMOUNT
+FROM OFFLINE_SALE
+WHERE SALES_DATE LIKE '2022-03%'
+ORDER BY SALES_DATE, PRODUCT_ID, USER_ID
