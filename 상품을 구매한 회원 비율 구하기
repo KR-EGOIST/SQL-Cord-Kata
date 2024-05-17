@@ -1,0 +1,29 @@
+/*
+조회 : SELECT
+년 : YEAR(날짜)
+달 : MONTH(날짜)
+별칭 : AS
+갯수 : COUNT
+중복제거 : DISTINCT
+반올림 : ROUND(값, 자릿수)
+부분일치 : LIKE
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+그룹 : GROUP BY
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT YEAR(SALES_DATE) AS YEAR,
+       MONTH(SALES_DATE) AS MONTH,
+       COUNT(DISTINCT(B.USER_ID)) AS PUCHASED_USERS,
+       ROUND(COUNT(DISTINCT(B.USER_ID))/(SELECT COUNT(*)
+                                  FROM USER_INFO
+                                  WHERE JOINED LIKE '2021%'), 1) AS PUCHASED_RATIO
+FROM USER_INFO A
+     JOIN ONLINE_SALE B
+     ON A.USER_ID = B.USER_ID
+WHERE A.JOINED LIKE '2021%'
+GROUP BY YEAR, MONTH
+ORDER BY YEAR, MONTH
