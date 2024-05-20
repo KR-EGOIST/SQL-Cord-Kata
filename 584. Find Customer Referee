@@ -1,0 +1,18 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+OR : 하나라도 참일 경우
+NULL 인 경우 : 컬럼명 IS NULL
+아닌 경우 : <> , !=
+*/
+
+SELECT name
+FROM Customer
+WHERE referee_id != '2' OR referee_id IS NULL
+
+//===========================================
+
+SELECT name
+FROM Customer
+WHERE referee_id <> '2' OR referee_id IS NULL
