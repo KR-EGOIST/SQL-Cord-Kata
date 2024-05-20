@@ -1,0 +1,10 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+AND : 모두 참일 경
+*/
+
+SELECT product_id
+FROM Products
+WHERE low_fats = 'Y' AND recyclable = 'Y'
