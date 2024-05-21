@@ -1,0 +1,14 @@
+/*
+조회 : SELECT
+중복제거 : DISTINCT
+별칭 : AS
+테이블 선택 : FROM
+조건 : WHERE
+정렬 : ORDER BY
+오름차순 : (ASC)
+*/
+
+SELECT DISTINCT author_id AS id
+FROM Views
+WHERE author_id = viewer_id
+ORDER BY id
