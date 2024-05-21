@@ -1,0 +1,10 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+OR : 둘 중 하나라도 참일 경우
+*/
+
+SELECT name, population, area
+FROM World
+WHERE area >= 3000000 OR population >= 25000000
