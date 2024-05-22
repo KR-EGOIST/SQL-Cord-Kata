@@ -1,0 +1,10 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+데이터의 길이 조회 : LENGTH(컬럼명)
+*/
+
+SELECT tweet_id
+FROM Tweets
+WHERE LENGTH(content) > 15
