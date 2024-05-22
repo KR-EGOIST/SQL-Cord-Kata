@@ -1,0 +1,11 @@
+/*
+조회 : SELECT
+테이블 선택 : FROM
+왼쪽 조인 : LEFT JOIN / 왼쪽 테이블을 기준으로 테이블을 합친다
+조인 조건 : ON
+*/
+
+SELECT unique_id, name
+FROM Employees A
+     LEFT JOIN EmployeeUNI B
+     ON A.id = B.id
