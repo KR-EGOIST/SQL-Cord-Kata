@@ -1,0 +1,18 @@
+/*
+조회 : SELECT
+갯수 조회 : COUNT(컬럼명)
+별칭 : AS
+테이블 선택 : FROM
+왼쪽 조인 : LEFT JOIN
+조인 조건 : ON
+조건 : WHERE
+NULL 값 조회 : IS NULL
+그룹 : GROUP BY
+*/
+
+SELECT A.customer_id, COUNT(*) AS count_no_trans
+FROM Visits A
+     LEFT JOIN Transactions B
+     ON A.visit_id = B.visit_id
+WHERE transaction_id IS NULL
+GROUP BY customer_id
