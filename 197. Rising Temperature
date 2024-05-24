@@ -1,0 +1,25 @@
+조회 : SELECT
+테이블 선택 : FROM
+별칭 : AS
+조건 : WHERE
+날짜 차이 계산 : DATEDIFF
+AND : 모두 참일 경우
+
+SELECT A.id
+FROM Weather AS A, Weather AS B
+WHERE DATEDIFF(A.recordDate, B.recordDate) = 1
+      AND A.temperature > B.temperature
+
+//===================================
+
+-- EXISTS 연산자 사용
+EXISTS
+서브쿼리가 반화나는 결과값이 있는지를 조사한다.
+단지 반환된 행이 있는지 없는지만 보고 값이 있으면 참 없으면 거짓을 반환한다.
+
+SELECT id
+FROM Weather AS today
+WHERE EXISTS (SELECT 1
+              FROM Weather AS yesterday
+              WHERE today.temperature > yesterday.temperature
+                    AND DATEDIFF(today.recordDate, yesterday.recordDate) = 1)
