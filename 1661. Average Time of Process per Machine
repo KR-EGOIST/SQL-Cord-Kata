@@ -1,0 +1,31 @@
+조회 : SELECT
+반올림 : ROUND(값, 자릿수)
+평균 : AVG(값)
+별칭 : AS
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+AND : 모두 참일 경우
+그룹 : GROUP BY
+
+SELECT A.machine_id, ROUND(AVG(B.timestamp - A.timestamp), 3) AS processing_time
+FROM Activity A
+     JOIN Activity B
+     ON A.machine_id = B.machine_id
+        AND A.process_id = B.process_id
+        AND A.activity_type = 'start'
+        AND B.activity_type = 'end'
+GROUP BY A.machine_id
+
+//===============================================
+
+서브쿼리 사용
+
+select 
+a.machine_id,
+round(
+      (select avg(a1.timestamp) from Activity a1 where a1.activity_type = 'end' and a1.machine_id = a.machine_id) - 
+      (select avg(a1.timestamp) from Activity a1 where a1.activity_type = 'start' and a1.machine_id = a.machine_id)
+,3) as processing_time
+from Activity a
+group by a.machine_id
