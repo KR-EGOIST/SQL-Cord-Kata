@@ -1,0 +1,13 @@
+조회 : SELECT
+테이블 선택 : FROM
+왼쪽 조인 : LEFT JOIN
+조인 조건 : ON
+조건 : WHERE
+OR : 하나라도 참일 경우
+NULL 조회 : 컬럼명 IS NULL
+
+SELECT A.name, B.bonus
+FROM Employee A
+     LEFT JOIN Bonus B
+     ON A.empId = B.empId
+WHERE B.bonus < 1000 OR B.bonus IS NULL
