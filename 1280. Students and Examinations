@@ -1,0 +1,18 @@
+CROSS JOIN(상호 조인)
+한쪽 테이블의 모든 행과 다른 쪽 테이블의 모든 행을 조인시키는 기능입니다. 상호 조인 결과의 전체 행 개수는 두 테이블의 각 행의 개수를 곱한 수만큼 됩니다.
+카티션 곱(CARTESIAN PRODUCT)라고도 합니다.
+
+SELECT *
+FROM <첫 번째 테이블>
+    CROSS JOIN <두 번째 테이블>
+
+-------------------------------------------------------------------------------------------------
+
+SELECT A.student_id, A.student_name, B.subject_name, COUNT(C.subject_name) AS attended_exams
+FROM Students A
+     CROSS JOIN Subjects B
+     LEFT JOIN Examinations C
+     ON A.student_id = C.student_id
+        AND B.subject_name = C.subject_name
+GROUP BY A.student_id, A.student_name, B.subject_name
+ORDER BY A.student_id, A.student_name
