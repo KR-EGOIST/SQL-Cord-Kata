@@ -6,6 +6,18 @@ SELECT *
 FROM <첫 번째 테이블>
     CROSS JOIN <두 번째 테이블>
 
+
+조회 : SELECT
+갯수 : COUNT(컬럼명)
+별칭 : AS
+테이블 선텍 : FROM
+크로스 조인 : CROSS JOIN
+왼쪽 조인 : LEFT JOIN
+조인 조건 : ON
+AND : 모두 참일 경우
+그룹 : GROUP BY
+정렬 : ORDER BY
+
 -------------------------------------------------------------------------------------------------
 
 SELECT A.student_id, A.student_name, B.subject_name, COUNT(C.subject_name) AS attended_exams
