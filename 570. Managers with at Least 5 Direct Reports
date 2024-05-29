@@ -1,0 +1,18 @@
+/*
+5명 이상의 직속 부하 직원이 있는 관리자를 찾는 솔루션을 작성하세요.
+
+id 를 기준으로 managerId 가 id 랑 일치하면서 갯수가 5 이상인 사람의 name 조회
+
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+포함 : IN
+서브쿼리 : (SELECT FROM ...)
+*/
+
+SELECT name
+FROM Employee
+WHERE id IN (SELECT managerId
+                    FROM Employee
+                    GROUP BY managerId
+                    HAVING COUNT(*) >= 5)
