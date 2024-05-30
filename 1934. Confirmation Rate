@@ -1,0 +1,18 @@
+-- 그룹을 user_id 로 했으므로 id 별 평균을 구할 수 있다.
+-- IF 문으로 action 이 confirmed 이면 1 아니면 0 으로 합을 구한 뒤 AVG 로 평균을 구하도록 했다.
+-- 소수점 이하 두 자리에서 반올림하라고 했으므로 ROUND(값, 2) 로 했다.
+
+조회 : SELECT
+반올림 : ROUND(값, 소수점 자리)
+평균 : AVG(값)
+IF문 : IF(조건, 참일 경우, 거짓일 경우)
+별칭 : AS
+왼쪽 조인 : LEFT JOIN
+조인 조건 : ON
+그룹 : GROUP BY
+
+SELECT A.user_id, ROUND(AVG(IF(B.action = 'confirmed', 1, 0)), 2) AS confirmation_rate
+FROM Signups A
+     LEFT JOIN Confirmations B
+     ON A.user_id = B.user_id
+GROUP BY A.user_id
