@@ -1,0 +1,21 @@
+-- 문제에는 product_id 의 3 데이터가 없는데 채점할 때는 3 데이터 있어서 LEFT JOIN 으로 한 뒤
+-- 3 데이터를 IFNULL 처리...
+
+조회 : SELECT
+NULL처리 : IFNULL(컬럼명, 값)
+반올림 : ROUND(값, 자릿수)
+합계 : SUM(컬럼명)
+별칭 : AS
+테이블 선택 : FROM
+왼쪽 조인 : LEFT JOIN
+조인 조건 : ON
+AND : 모두 참일 경우
+BETWEEN A AND B : A 와 B 사이의 값
+그룹 : GROUP BY
+
+SELECT A.product_id, IFNULL(ROUND(SUM(A.price*B.units)/SUM(B.units), 2), 0) AS average_price
+FROM Prices A
+     LEFT JOIN UnitsSold B
+     ON A.product_id = B.product_id
+     AND B.purchase_date BETWEEN start_date AND end_date
+GROUP BY A.product_id
