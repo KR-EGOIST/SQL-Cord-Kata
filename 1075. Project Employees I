@@ -1,0 +1,14 @@
+조회 : SELECT
+반올림 : ROUND(값, 자릿수)
+평균 : AVG(컬럼명)
+별칭 : AS
+테이블 선택 : FROM
+내부 조인 : (INNER) JOIN
+조인 조건 : ON
+그룹 : GROUP BY
+
+SELECT project_id, ROUND(AVG(experience_years), 2) AS average_years
+FROM Project A
+     JOIN Employee B
+     ON A.employee_id = B.employee_id
+GROUP BY project_id
