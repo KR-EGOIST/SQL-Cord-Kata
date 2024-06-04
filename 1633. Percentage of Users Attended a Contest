@@ -1,0 +1,18 @@
+조회 : SELECT
+반올림 : ROUND(컬럼명, 자릿수)
+갯수 : COUNT(컬럼명)
+중복제외 : DISTINCT
+별칭 : AS
+테이블 선택 : FROM
+그룹 : GROUP BY
+정렬 : ORDER BY
+내림차순 : DESC
+오름차순 : (ASC)
+
+-- 테이블 2개 이상 보이면 거의 join 을 사용하길래 join 으로 풀려고 했다가 오랜시간을 잡아먹게 되버렸다...
+
+SELECT contest_id, ROUND(COUNT(DISTINCT user_id) * 100 / (SELECT COUNT(user_id)
+                                                          FROM Users), 2) AS percentage
+FROM Register
+GROUP BY contest_id
+ORDER BY percentage DESC, contest_id
