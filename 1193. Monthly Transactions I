@@ -1,0 +1,17 @@
+조회 : SELECT
+날짜 표기 : DATE_FORMAT
+0000-00 : "%Y-%m"
+갯수 : COUNT(컬럼명)
+합계 : SUM(컬럼명)
+IF문 : IF(조건, 참일 경우, 거짓일 경우)
+별칭 : AS
+테이블 선택 : FROM
+그룹 : GROUP BY
+
+SELECT DATE_FORMAT(trans_date, "%Y-%m") AS month, country, 
+       COUNT(*) AS trans_count, 
+       SUM(IF(state = "approved", 1, 0)) AS approved_count, 
+       SUM(amount) AS trans_total_amount, 
+       SUM(IF(state = "approved", amount, 0)) AS approved_total_amount
+FROM Transactions
+GROUP BY month, country
