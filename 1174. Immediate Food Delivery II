@@ -1,0 +1,14 @@
+조회 : SELECT
+반올림 : ROUND
+평균 : AVG
+별칭 : AS
+테이블 선택 : FROM
+조건 : WHERE
+포함하는지 : IN
+서브쿼리 : (SELECT FROM ...)
+
+SELECT ROUND(AVG(order_date = customer_pref_delivery_date) * 100, 2) AS immediate_percentage
+FROM Delivery
+WHERE (customer_id, order_date) IN (SELECT customer_id, MIN(order_date)
+                                    FROM Delivery
+                                    GROUP BY customer_id)
