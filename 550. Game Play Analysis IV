@@ -1,0 +1,18 @@
+조회 : SELCET
+반올림 : ROUND
+갯수 : COUNT
+중복 제거 : DISTINCT
+별칭 : AS
+테이블 선택 : FROM
+조건 : WHERE
+시간 빼기 : DATE_SUB(기준 날짜, INTERVAL 값)
+포함하는 : IN
+가장 작은 값 : MIN(컬럼명)
+그룹 : GROUP BY
+
+SELECT ROUND(COUNT(player_id) / (SELECT COUNT(DISTINCT player_id) FROM Activity), 2) AS fraction
+FROM Activity
+WHERE (player_id, DATE_SUB(event_date, INTERVAL 1 DAY))
+        IN (SELECT player_id, MIN(event_date)
+            FROM Activity
+            GROUP BY player_id)
