@@ -1,0 +1,10 @@
+조회 : SELECT
+갯수 : COUNT
+중복 제거 : DISTINCT
+별칭 : AS
+테이블 선택 : FROM
+그룹 : GROUP BY
+
+SELECT teacher_id, COUNT(DISTINCT subject_id) AS cnt
+FROM Teacher
+GROUP BY teacher_id
