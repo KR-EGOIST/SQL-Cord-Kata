@@ -1,0 +1,13 @@
+조회 : SELECT
+별칭 : AS
+갯수 : COUNT(컬럼명)
+중복제거 : DISTINCT
+테이블 선택 : FROM
+조건 : WHERE
+A 와 B 사이 : BETWEEN A AND B
+그룹 : GROUP BY
+
+SELECT activity_date AS day, COUNT(DISTINCT user_id) AS active_users
+FROM Activity
+WHERE activity_date BETWEEN '2019-06-28' AND '2019-07-27'
+GROUP BY activity_date
