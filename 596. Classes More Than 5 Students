@@ -1,0 +1,10 @@
+조회 : SELECT
+테이블 선택 : FROM
+그룹 : GROUP BY
+그룹 조건 : HAVING
+갯수 : COUNT
+
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING COUNT(class) >= 5
