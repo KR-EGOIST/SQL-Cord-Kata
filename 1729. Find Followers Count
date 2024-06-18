@@ -1,0 +1,12 @@
+조회 : SELECT
+갯수 : COUNT
+별칭 : AS
+테이블 선택 : FROM
+그룹 : GROUP BY
+정렬 : ORDER BY
+오름차순 : (ASC)
+
+SELECT user_id, COUNT(follower_id) AS followers_count
+FROM Followers
+GROUP BY user_id
+ORDER BY user_id
