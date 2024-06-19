@@ -1,0 +1,13 @@
+조회 : SELECT
+최대값 : MAX
+별칭 : AS
+테이블 선택 : FROM
+그룹 : GROUP BY
+그룹 조건 : HAVING
+갯수 : COUNT
+
+SELECT MAX(num) AS num
+FROM (SELECT num
+      FROM MyNumbers
+      GROUP BY num
+      HAVING COUNT(num) = 1) AS a
