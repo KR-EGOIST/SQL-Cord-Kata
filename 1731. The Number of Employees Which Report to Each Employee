@@ -1,0 +1,18 @@
+조회 : SELECT
+갯수 : COUNT
+별칭 : AS
+반올림 : ROUND
+평균 : AVG
+테이블 선택 : FROM
+내부조인 : (INNER) JOIN
+조인 조건 : ON
+그룹 : GROUP BY
+정렬 : ORDER BY
+오름차순 : (ASC)
+
+SELECT e1.employee_id, e1.name, COUNT(e2.employee_id) AS reports_count, ROUND(AVG(e2.age), 0) AS average_age
+FROM Employees e1
+     JOIN Employees e2
+     ON e1.employee_id = e2.reports_to
+GROUP BY e1.employee_id
+ORDER BY e1.employee_id
