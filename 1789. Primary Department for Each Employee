@@ -1,0 +1,26 @@
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+A 또는 B : A OR B
+포함 : IN
+그룹 : GROUP BY
+그룹 조건 : HAVING
+갯수 : COUNT
+
+SELECT employee_id, department_id
+FROM Employee
+WHERE primary_flag = 'Y' OR employee_id IN (SELECT employee_id
+                                            FROM Employee
+                                            GROUP BY employee_id
+                                            HAVING COUNT(employee_id) = 1)
+
+--------------------------------------------------------
+
+SELECT employee_id, department_id
+FROM Employee
+WHERE primary_flag='Y'
+UNION
+SELECT employee_id, department_id
+FROM Employee
+GROUP BY employee_id
+HAVING COUNT(employee_id) = 1
