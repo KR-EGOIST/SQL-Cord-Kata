@@ -1,0 +1,31 @@
+쿼리 2개를 작성하고 UNION 으로 합쳐준다.
+하나는 2019-08-16 이후의 product_id 의 price 를 10으로 설정
+다른 하나는 2019-08-16 까지 product_id 의 price 를 최대 price 로 설정
+
+SELECT
+    DISTINCT product_id, 10 AS price
+FROM
+    Products
+WHERE
+    product_id NOT IN (SELECT
+                            DISTINCT product_id
+                        FROM
+                            Products
+                        WHERE
+                            change_date <= '2019-08-16')
+
+UNION
+
+SELECT
+    product_id, new_price AS price
+FROM
+    Products
+WHERE
+    (product_id, change_date) IN (SELECT
+                                        product_id, MAX(change_date)
+                                    FROM
+                                        Products
+                                    WHERE
+                                        change_date <= '2019-08-16'
+                                    GROUP BY
+                                        product_id)
