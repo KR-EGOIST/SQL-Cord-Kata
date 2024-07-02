@@ -1,0 +1,20 @@
+조회 : SELECT
+테이블 선택 : FROM
+조건 : WHERE
+포함하지 않는 : NOT IN
+정렬 : ORDER BY
+오름차순 : (ASC)
+
+SELECT
+    employee_id
+FROM
+    Employees
+WHERE
+    salary < 30000 
+    AND
+    manager_id NOT IN (SELECT
+                            employee_id
+                        FROM
+                            Employees)
+ORDER BY
+    employee_id
