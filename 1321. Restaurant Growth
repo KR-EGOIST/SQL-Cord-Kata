@@ -1,0 +1,36 @@
+메인 Customer 테이블을 기준으로 서브 쿼리로
+6일 이전까지의 amount의 합을 조회하는 쿼리랑
+6일 이전까지의 평균 amount의 값을 조회하는 쿼리를 작성하면 됩니다.
+
+DATE_ADD는 시간을 더하는 함수
+DATE_SUB는 시간을 빼는 함수
+더하거나 빼는 값은 INTERVAL로 지정할 수 있습니다.
+INTERVAL 6 DAY 는 6일을 더하거나 뺍니다.
+
+------------------------------------------------------
+
+SELECT
+    visited_on,
+    (
+        SELECT SUM(amount)
+        FROM Customer
+        WHERE visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on
+    ) AS amount,
+    ROUND
+    (
+        (
+        SELECT SUM(amount) / 7
+            FROM Customer
+            WHERE visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on
+        ),
+        2
+    ) AS average_amount
+FROM
+    Customer AS c
+WHERE
+    visited_on >= (
+        SELECT DATE_ADD(MIN(visited_on), INTERVAL 6 DAY)
+        FROM  Customer
+    )
+GROUP BY
+    visited_on
