@@ -1,0 +1,26 @@
+requester_id 기준으로 각 id마다 친구수를 구한다.
+accepter_id 기준으로 각 id마다 친구수를 구한다.
+두 쿼리문을 UNION 으로 합쳐준다. (교집합)
+num 기준으로 내림차순 정렬하고 
+LIMIT로 최상위 1개만 출력한다.
+
+SELECT
+    requester_id AS id,
+    (SELECT COUNT(*)
+    FROM RequestAccepted
+    WHERE id = requester_id OR id = accepter_id) AS num
+FROM RequestAccepted
+GROUP BY requester_id
+
+UNION
+
+SELECT
+    accepter_id AS id,
+    (SELECT COUNT(*)
+    FROM RequestAccepted
+    WHERE id = requester_id OR id = accepter_id) AS num
+FROM RequestAccepted
+GROUP BY accepter_id
+
+ORDER BY num DESC
+LIMIT 1
