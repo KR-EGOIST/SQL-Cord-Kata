@@ -1,0 +1,34 @@
+WHERE 절 서브 쿼리
+
+SELECT COUNT(DISTINCT E2.salary)
+FROM Employee E2
+WHERE E2.departmentId = E.departmentId 
+AND E2.salary >= E.salary
+
+서브 쿼리이므로 메인 쿼리의 값에 접근할 수 있다.
+이 쿼리는 Employee 테이블의 복사본을 만들고 메인 쿼리에서 검사하는 employee의 급여보다
+높은 employee 테이블의 고유한 급여 개수를 반환한다.
+
+3 >= 한 이유
+서브 쿼리에서 반환된 부서의 고유한 급여가 3보다 작거나 같은 해당 직원은 고소득자라는 
+
+-----------------------------------------------
+
+SELECT
+    D.name AS Department,
+    E.name AS Employee,
+    E.salary AS Salary
+FROM
+    Employee E
+    JOIN Department D
+    ON E.departmentId = D.id
+WHERE
+    (
+        SELECT COUNT(DISTINCT E2.salary)
+        FROM Employee E2
+        WHERE E2.departmentId = E.departmentId 
+            AND E2.salary >= E.salary
+    ) <= 3
+ORDER BY
+    Department,
+    Salary DESC
