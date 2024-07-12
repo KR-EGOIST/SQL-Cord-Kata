@@ -1,0 +1,20 @@
+문자열 합치기
+CONCAT(문자1, 문자2, 문자3, ...)
+
+대문자로 변환
+UPPER(문자)
+
+소문자로 변환
+LOWER(문자)
+
+문자열 자르기
+SUBSTR(컬럼명, 시작위치, 자를 갯수(옵션))
+
+-----------------------------
+
+SELECT
+    user_id, CONCAT(UPPER(SUBSTR(name, 1, 1)), LOWER(SUBSTR(name, 2))) AS name
+FROM
+    Users
+ORDER BY
+    user_id
