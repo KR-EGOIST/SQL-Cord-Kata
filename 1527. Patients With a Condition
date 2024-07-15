@@ -1,0 +1,12 @@
+DIAB1 로 시작하는 conditions
+다음 단어에서 DIAB1 로 시작하는 condeitions
+두 가지 경우가 있기 때문에 OR 로 두 경우를 작성해주었다.
+
+SELECT
+    *
+FROM
+    Patients
+WHERE 
+    conditions LIKE 'DIAB1%'
+    OR
+    conditions LIKE '% DIAB1%'
