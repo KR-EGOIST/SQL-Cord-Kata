@@ -1,0 +1,32 @@
+WHERE a.email = b.email 을 하면
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 3  | john@example.com |
+| 2  | bob@example.com  |
+| 1  | john@example.com |
+| 3  | john@example.com |
++----+------------------+
+다음과 같은 데이터가 나온다.
+
+여기에 a.id > b.id 를 AND 로 묶어주면
++----+------------------+
+| id | email            |
++----+------------------+
+| 3  | john@example.com |
++----+------------------+
+다음과 같은 데이터가 나온다.
+
+이것을 delete 하면 된다.
+
+//----------------------------------------------
+
+DELETE
+    a
+FROM
+    Person a, Person b
+WHERE
+    a.id > b.id
+    AND
+    a.email = b.email
