@@ -1,0 +1,23 @@
+WITH 이름을 가진 서브쿼리
+지금 여기 SQL문에는 highest_salary 라는 이름을 가진 서브쿼리
+
+가장 값이 큰 salary 를 조회하는 서브쿼리문 작성
+
+가장 값이 큰 salary 를 조회하는 메인 쿼리문 작성
+하지만 서브쿼리(highest_salary)에서 찾은 salary 값 보다는 작은 값들 중에서 가장 큰 값을 조회
+이러면 2번째로 가장 큰 salary 를 조회할 수 있다.
+
+--------------------------------------------------------
+
+WITH highest_salary AS (
+    SELECT
+        MAX(salary) AS salary
+    FROM Employee
+)
+
+SELECT
+    MAX(salary) AS SecondHighestSalary
+FROM
+    Employee
+WHERE
+    salary < (SELECT salary FROM highest_salary)
