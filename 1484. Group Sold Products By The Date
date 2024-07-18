@@ -1,0 +1,36 @@
+-- 기본형
+SELECT type, 
+       GROUP_CONCAT(name) AS '과일명'
+  FROM fruits
+ GROUP BY type;
+ 
+ -- 중복제거
+ SELECT type, 
+       GROUP_CONCAT(DISTINCT name) AS '과일명'
+  FROM fruits
+ GROUP BY type;
+ 
+ -- 구분자 지정
+  SELECT type, 
+       GROUP_CONCAT(DISTINCT name SEPARATOR ', ') AS '과일명'
+  FROM fruits
+ GROUP BY type;
+ 
+ -- 문자열 정렬
+ SELECT type, 
+       GROUP_CONCAT(DISTINCT name ORDER BY name SEPARATOR ', ') AS '과일명'
+  FROM fruits
+ GROUP BY type;
+
+------------------------------------------------------------------
+
+SELECT
+    sell_date,
+    COUNT(DISTINCT product) AS num_sold,
+    GROUP_CONCAT(DISTINCT product ORDER BY product separator ',') AS products
+FROM
+    Activities
+GROUP BY
+    sell_date
+ORDER BY
+    sell_date;
