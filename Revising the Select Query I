@@ -1,0 +1,10 @@
+인구가 100,000명보다 많은 CITY 테이블의 모든 미국 도시에 대한 모든 열을 쿼리합니다. 미국의 국가 코드는 USA입니다.
+
+SELECT
+            *
+FROM
+            CITY
+WHERE
+            POPULATION > 100000
+            AND
+            CountryCode = "USA"
