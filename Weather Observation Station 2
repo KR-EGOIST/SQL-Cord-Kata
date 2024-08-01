@@ -1,0 +1,10 @@
+LAT_N의 모든 값의 합계를 소수 자릿수로 반올림합니다.
+LONG_W의 모든 값의 합계를 소수 자릿수로 반올림합니다.
+
+----------------------------------------------
+
+SELECT
+    ROUND(SUM(LAT_N), 2) AS LAT_N,
+    ROUND(SUM(LONG_W), 2) AS LONG_W
+FROM
+    STATION
