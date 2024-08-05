@@ -1,0 +1,8 @@
+전체 city의 갯수 - 중복제거한 city의 갯수를 구하면 됩니다.
+
+-----------------------------------------
+
+SELECT
+    COUNT(CITY) - COUNT(DISTINCT(CITY))
+FROM
+    STATION
