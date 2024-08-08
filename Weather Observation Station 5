@@ -1,0 +1,24 @@
+TATION에서 가장 짧고 가장 긴 CITY 이름과 각각의 길이(즉, 이름의 문자 수)를 가진 두 도시를 쿼리합니다.
+가장 작거나 가장 큰 도시가 두 개 이상 있는 경우 알파벳순으로 정렬했을 때 먼저 오는 도시를 선택합니다.
+
+-----------------------------------------
+
+-- 가장 짧은 CITY 이름과 그 길이를 찾는 쿼리
+(SELECT CITY, LENGTH(CITY) AS CITY_NAME_LENGTH
+FROM STATION
+WHERE LENGTH(CITY) = (
+    SELECT MIN(LENGTH(CITY)) FROM STATION
+)
+ORDER BY CITY ASC
+LIMIT 1)
+
+UNION ALL
+
+-- 가장 긴 CITY 이름과 그 길이를 찾는 쿼리
+(SELECT CITY, LENGTH(CITY) AS CITY_NAME_LENGTH
+FROM STATION
+WHERE LENGTH(CITY) = (
+    SELECT MAX(LENGTH(CITY)) FROM STATION
+)
+ORDER BY CITY ASC
+LIMIT 1)
