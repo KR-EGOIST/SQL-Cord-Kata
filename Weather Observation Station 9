@@ -1,0 +1,11 @@
+모음 (a, e, i, o, u)로 시작하는 city가 아닌 것만 조회하면 된다.
+중복되는 city는 제외한다.
+
+----------------------------------------------------------
+
+SELECT
+    DISTINCT city
+FROM
+    station
+WHERE
+    LEFT(city, 1) NOT IN ('a', 'e', 'i', 'o', 'u')
