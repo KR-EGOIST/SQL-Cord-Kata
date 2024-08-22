@@ -1,0 +1,10 @@
+Employee 테이블에서 직원 이름 목록(즉, 이름 속성)을 알파벳순으로 인쇄하는 쿼리를 작성하세요.
+
+-----------------------------
+
+SELECT
+    name
+FROM
+    employee
+ORDER BY
+    name
